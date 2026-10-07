@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blox Fruits Services</title>
+  <meta name="description" content="Safe, fast Blox Fruits carries and help.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main>
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero">
+      <div class="hero-inner">
+
+        <div class="hero-top-row">
+          <!-- Left: badge, headline, CTAs -->
+          <div style="flex:1;min-width:260px;">
+            <div class="hero-badge"><span class="hero-badge-dot"></span>Trusted Blox Fruits Services</div>
+            <h1 class="hero-title">Blox Fruits<br><span>Carries &amp; Services</span></h1>
+            <p class="hero-subtitle">Fast, safe, and trusted help for raids, bosses, sea events, and leveling. No email & password needed, ever.</p>
+            <div class="hero-cta-row">
+              <a href="contact.html" class="hero-cta"><i class="bi bi-chat-dots-fill"></i> Contact Me</a>
+              <a href="services.html" class="hero-cta-ghost"><i class="bi bi-grid"></i> View Services</a>
+            </div>
+            <div class="hero-signals">
+              <div class="rating-label">Service Ratings</div>
+              <div class="rating-stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><span>4.9</span>
+              </div>
+              <div class="social-row">
+                <a class="social-circle" data-link="discord" aria-label="Discord"><i class="bi bi-discord"></i></a>
+                <a class="social-circle" data-link="facebook" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a class="social-circle" data-link="tiktok" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                <a class="social-circle" data-link="email" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: hologram crown shield with orbiting service cards -->
+          <div class="hero-visual">
+            <div class="hero-scene" id="heroScene">
+              <svg class="layer-back" viewBox="0 0 520 440" aria-hidden="true">
+                <defs>
+                  <radialGradient id="hGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffb74d" stop-opacity=".4"/><stop offset="1" stop-color="#ffb74d" stop-opacity="0"/></radialGradient>
+                  <radialGradient id="hCore" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#fff6e0"/><stop offset="1" stop-color="#ffb74d"/></radialGradient>
+                  <linearGradient id="hBeam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#7fe7ff" stop-opacity=".5"/><stop offset="1" stop-color="#7fe7ff" stop-opacity="0"/></linearGradient>
+                  <pattern id="hScanPat" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="2.6" fill="#fff"/></pattern>
+                  <mask id="hScan" maskUnits="userSpaceOnUse" x="0" y="0" width="520" height="440"><rect class="scan-rect" x="0" y="-8" width="520" height="460" fill="url(#hScanPat)"/></mask>
+                  <pattern id="hLines" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="1.2" fill="#7fe7ff" opacity=".55"/></pattern>
+                  <clipPath id="hBeamClip"><path d="M208 284 L222 70 L298 70 L312 284 Z"/></clipPath>
+                </defs>
+                <ellipse cx="260" cy="282" rx="190" ry="80" fill="url(#hGlow)"/>
+                <path class="beam" d="M208 284 L222 70 L298 70 L312 284 Z" fill="url(#hBeam)"/>
+                <g clip-path="url(#hBeamClip)"><rect class="beam-lines" x="200" y="60" width="120" height="240" fill="url(#hLines)"/></g>
+                <ellipse cx="260" cy="282" rx="130" ry="52" fill="none" stroke="#ffb74d" stroke-opacity=".45"/>
+                <ellipse cx="260" cy="282" rx="100" ry="40" fill="none" stroke="#ffb74d" stroke-opacity=".6"/>
+                <ellipse class="ring-dash" cx="260" cy="282" rx="115" ry="46" fill="none" stroke="#ffe3b0" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 10"/>
+                <ellipse cx="260" cy="282" rx="72" ry="29" fill="none" stroke="#ffe3b0" stroke-width="2" stroke-opacity=".8"/>
+                <ellipse cx="260" cy="282" rx="54" ry="22" fill="url(#hCore)"/>
+                <ellipse class="ripple" cx="260" cy="282" rx="54" ry="22" fill="none" stroke="#7fe7ff" stroke-width="2"/>
+                <ellipse class="ripple" style="animation-delay:-1.3s" cx="260" cy="282" rx="54" ry="22" fill="none" stroke="#7fe7ff" stroke-width="2"/>
+                <g id="heroLines"></g>
+              </svg>
+
+              <a href="services.html" class="orbit-card"><i class="bi bi-lightning-charge-fill"></i>Raid Carry</a>
+              <a href="services.html" class="orbit-card"><i class="bi bi-bullseye"></i>Boss Carry</a>
+              <a href="services.html" class="orbit-card"><i class="bi bi-water"></i>Sea Events</a>
+              <a href="services.html" class="orbit-card"><i class="bi bi-graph-up-arrow"></i>Leveling</a>
+              <a href="services.html" class="orbit-card"><i class="bi bi-stars"></i>Race V4</a>
+              <a href="services.html" class="orbit-card"><i class="bi bi-arrow-left-right"></i>Trades</a>
+
+              <svg class="layer-holo" viewBox="0 0 520 440" aria-hidden="true">
+                <g mask="url(#hScan)"><g class="holo-float"><g transform="translate(260 244) scale(.62) translate(-260 -350)">
+                  <ellipse class="holo-ring" cx="260" cy="205" rx="215" ry="52" fill="none" stroke="#ffb74d" stroke-width="3" stroke-dasharray="14 10" transform="rotate(-16 260 205)"/>
+                  <path d="M260 96 L376 134 L376 224 C376 288 326 326 260 350 C194 326 144 288 144 224 L144 134 Z" fill="#7fe7ff" fill-opacity=".14" stroke="#7fe7ff" stroke-width="4"/>
+                  <path d="M260 120 L356 150 L356 224 C356 272 318 302 260 322 C202 302 164 272 164 224 L164 150 Z" fill="none" stroke="#ffb74d" stroke-width="2" stroke-opacity=".75"/>
+                  <path d="M208 108 L218 56 L240 82 L260 42 L280 82 L302 56 L312 108 Z" fill="#ffb74d" fill-opacity=".32" stroke="#ffd48a" stroke-width="4" stroke-linejoin="round"/>
+                  <circle cx="218" cy="56" r="6" fill="#ffd48a"/><circle cx="260" cy="42" r="6" fill="#ffd48a"/><circle cx="302" cy="56" r="6" fill="#ffd48a"/>
+                  <text x="260" y="248" text-anchor="middle" font-size="68" font-weight="700" fill="#ffb74d" font-family="Poppins, sans-serif">4.9</text>
+                  <ellipse class="holo-ring rev" cx="260" cy="205" rx="215" ry="52" fill="none" stroke="#7fe7ff" stroke-width="3" stroke-dasharray="14 10" transform="rotate(16 260 205)"/>
+                </g></g></g>
+              </svg>
+            </div>
+
+            <a href="contact.html" class="hero-alert-card">
+              <div class="alert-top-row"><span class="alert-dot"></span><span class="alert-label">Status</span></div>
+              <div class="alert-num">Open</div>
+              <div class="alert-sub">taking orders now</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick cards -->
+        <div class="hero-card-grid">
+          <a href="services.html" class="hero-quick-card"><i class="bi bi-lightning-charge-fill qc-icon" style="color:#48e5ff"></i><div class="qc-name">Raid Carries</div><div class="qc-sub">Awakening, Dough, Leopard</div></a>
+          <a href="services.html" class="hero-quick-card"><i class="bi bi-water qc-icon" style="color:#48c78e"></i><div class="qc-name">Bosses &amp; Sea Events</div><div class="qc-sub">Fast, reliable clears</div></a>
+          <a href="services.html" class="hero-quick-card"><i class="bi bi-graph-up-arrow qc-icon" style="color:#ffb74d"></i><div class="qc-name">Leveling &amp; Race V4</div><div class="qc-sub">Guided progress</div></a>
+          <a href="services.html" class="hero-quick-card"><i class="bi bi-arrow-left-right qc-icon" style="color:#5ed3c8"></i><div class="qc-name">Trade Help</div><div class="qc-sub">Safe, fair trades</div></a>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats">
+          <div><div class="hero-stat-val">16</div><div class="hero-stat-lbl">Orders Completed</div></div>
+          <div class="hero-stat-divider"></div>
+          <div><div class="hero-stat-val">₱(Gcash Only) / Fruits / Game Passes</div><div class="hero-stat-lbl">Accepted Payment</div></div>
+          <div class="hero-stat-divider"></div>
+          <div><div class="hero-stat-val">6</div><div class="hero-stat-lbl">Services Offered</div></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    const scene = document.getElementById('heroScene');
+    if (!scene) return;
+    const cards = [...scene.querySelectorAll('.orbit-card')];
+    const lineBox = document.getElementById('heroLines');
+    const CX = 260, CY = 282, RX = 187, RY = 78;
+    const lines = cards.map((c, i) => {
+      const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      l.setAttribute('class', 'conduit');
+      l.setAttribute('x1', CX); l.setAttribute('y1', CY);
+      lineBox.appendChild(l);
+      c.style.setProperty('--d', (i * 0.55) + 's');
+      return l;
+    });
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let angle = Math.PI / 2 + Math.PI / 6, last = performance.now(), hovered = -1, speed = 1;
+
+    function place(a) {
+      cards.forEach((c, i) => {
+        const th = a + i * 2 * Math.PI / cards.length;
+        const x = CX + RX * Math.cos(th), y = CY + RY * Math.sin(th);
+        const depth = (Math.sin(th) + 1) / 2, on = i === hovered;
+        c.style.left = (x / 520 * 100) + '%';
+        c.style.top = (y / 440 * 100) + '%';
+        c.style.transform = `translate(-50%,-50%) scale(${(0.82 + 0.18 * depth) * (on ? 1.12 : 1)})`;
+        c.style.opacity = on ? 1 : 0.8 + 0.2 * depth;
+        c.style.zIndex = on ? 15 : (depth > 0.5 ? 8 : 3);
+        lines[i].setAttribute('x2', x); lines[i].setAttribute('y2', y);
+        lines[i].classList.toggle('on', on);
+      });
+    }
+    function frame(now) {
+      const dt = now - last; last = now;
+      speed += ((hovered >= 0 ? 0 : 1) - speed) * 0.12;
+      angle += dt * 0.00011 * speed;
+      place(angle);
+      requestAnimationFrame(frame);
+    }
+    const set = i => () => { hovered = i; if (still) place(angle); };
+    const clear = i => () => { if (hovered === i) hovered = -1; if (still) place(angle); };
+    cards.forEach((c, i) => {
+      c.addEventListener('pointerenter', set(i)); c.addEventListener('pointerleave', clear(i));
+      c.addEventListener('focusin', set(i)); c.addEventListener('focusout', clear(i));
+    });
+    place(angle);
+    if (!still) requestAnimationFrame(frame);
+  })();
+  </script>
+</body>
+</html>
