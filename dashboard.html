@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Dashboard | BloxCarry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#06171f; --card:#0c2530; --line:rgba(0,180,216,.22); --acc:#00b4d8; --txt:#eaf6fa; --mut:#9db9c2; --ok:#48c78e; --warn:#ffc107; --bad:#ff7b7b; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:Poppins,system-ui,sans-serif; background:var(--bg); color:var(--txt); font-size:14px; }
+    .wrap { max-width:1150px; margin:0 auto; padding:20px 16px 60px; }
+    h1 { font-size:1.3rem; margin:0; } h2 { font-size:1rem; margin:0 0 12px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:16px; }
+    .grid { display:grid; gap:12px; } .kpis { grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); }
+    .two { grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); }
+    .kpi b { display:block; font-size:1.5rem; } .kpi span { color:var(--mut); font-size:.8rem; }
+    input,select,button { font-family:inherit; font-size:.9rem; padding:8px 10px; border-radius:8px; border:1px solid var(--line); background:#071d27; color:var(--txt); }
+    button { background:var(--acc); color:#06171f; font-weight:700; border:0; cursor:pointer; } button.ghost { background:transparent; color:var(--txt); border:1px solid var(--line); }
+    button.sm { padding:4px 10px; font-size:.78rem; } button.ok { background:var(--ok); } button.no { background:var(--bad); }
+    button:focus-visible,input:focus-visible,select:focus-visible { outline:2px solid var(--warn); outline-offset:2px; }
+    .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+    .tbl { overflow-x:auto; } table { width:100%; border-collapse:collapse; } th,td { text-align:left; padding:8px 10px; border-bottom:1px solid rgba(255,255,255,.07); white-space:nowrap; }
+    th { color:var(--mut); font-weight:600; font-size:.78rem; }
+    .st { padding:2px 10px; border-radius:99px; font-size:.75rem; border:1px solid; } .Pending{color:var(--warn)} .Done{color:var(--ok)} .Cancelled{color:var(--bad)}
+    #login { max-width:340px; margin:12vh auto; } #login input { width:100%; margin-bottom:10px; }
+    #msg { color:var(--bad); min-height:1.2em; font-size:.85rem; } .mut { color:var(--mut); }
+    [hidden] { display:none !important; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <form id="login" class="card">
+    <h1>BloxCarry dashboard</h1><p class="mut">Sign in with your team username and access key.</p>
+    <input id="u" placeholder="Username" autocomplete="username" required>
+    <input id="k" type="password" placeholder="Access key" autocomplete="current-password" required>
+    <button style="width:100%">Sign in</button><p id="msg"></p>
+  </form>
+
+  <div id="app" hidden>
+    <div class="top"><div><h1 id="who"></h1><span class="mut" id="upd"></span></div>
+      <div class="row" style="margin:0"><button class="ghost" id="refresh">Refresh</button><button class="ghost" id="logout">Sign out</button></div></div>
+
+    <div class="grid kpis" id="kpis"></div>
+
+    <div class="grid two" style="margin-top:16px">
+      <div class="card"><h2>Revenue, last 14 days (done orders)</h2><canvas id="cRev" height="200"></canvas></div>
+      <div class="card"><h2>Done orders by category</h2><canvas id="cCat" height="200"></canvas></div>
+    </div>
+
+    <div class="card"><h2>Log an order</h2>
+      <div class="row">
+        <input id="fCust" placeholder="Customer username">
+        <select id="fSvc"></select>
+        <select id="fWho" hidden></select>
+        <button id="fAdd">Add order</button><span id="fMsg" class="mut"></span>
+      </div></div>
+
+    <div class="card"><h2>Filters</h2>
+      <div class="row"><label>From <input type="date" id="from"></label><label>To <input type="date" id="to"></label>
+        <select id="fStatus"><option value="">All statuses</option><option>Pending</option><option>Done</option><option>Cancelled</option></select>
+        <input id="q" placeholder="Search customer, service, order id"></div></div>
+
+    <div class="card"><h2>Payout by team member and service</h2><div class="tbl"><table id="pay"></table></div></div>
+    <div class="card"><h2>Orders</h2><div class="tbl"><table id="ord"></table></div></div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="sheet.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

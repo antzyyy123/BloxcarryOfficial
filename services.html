@@ -36,15 +36,25 @@
   </main>
   <div id="site-footer"></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="sheet.js"></script>
   <script src="main.js"></script>
   <script>
-    const DATA = {"raids": {"t": "Raid Services", "ic": "bi-lightning-charge-fill", "items": [{"n": "Normal Raid (Full Awaken)", "p": 50, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}, {"n": "Special Raid (Full Awaken)", "p": 80, "f": "Any mythical fruit (except Mammoth, Shadow, Spirit)", "note": null, "badge": "Coming soon"}]}, "quests": {"t": "Quest Services", "ic": "bi-map-fill", "items": [{"n": "CDK Quest", "p": 150, "f": "Any mythical fruit", "note": null, "badge": null}, {"n": "TTK Quest", "p": 150, "f": "Any mythical fruit", "note": null, "badge": null}, {"n": "Yama Quest", "p": 75, "f": "Any legendary fruit", "note": null, "badge": null}, {"n": "Tushita Quest", "p": 75, "f": "Any legendary fruit", "note": null, "badge": null}, {"n": "Shark Anchor Quest", "p": 130, "f": "Any mythical fruit (except Mammoth, Shadow, Spirit)", "note": null, "badge": null}, {"n": "Dragonstorm Quest", "p": 140, "f": "Any mythical fruit (except Mammoth, Shadow, Spirit)", "note": null, "badge": null}, {"n": "Dojo Belt Quest", "p": 150, "f": "Any mythical fruit (except Mammoth, Shadow, Spirit)", "note": null, "badge": null}]}, "items": {"t": "Item Services", "ic": "bi-box-seam-fill", "items": [{"n": "Hollow Essence", "p": 40, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}, {"n": "God's Chalice", "p": 40, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}, {"n": "Fist of Darkness", "p": 40, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}, {"n": "Dark Fragment", "p": 40, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}, {"n": "Mirror Fractal", "p": 40, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}, {"n": "Blue Gear", "p": 50, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}, {"n": "Dragon Egg", "p": 60, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}, {"n": "Leviathan Heart", "p": 180, "f": "Any mythical fruit (except Mammoth, Shadow, Spirit)", "note": null, "badge": null}]}, "v4": {"t": "V4 Services", "ic": "bi-stars", "items": [{"n": "Full Gear", "p": 160, "f": "Any mythical fruit (except Mammoth, Shadow, Spirit)", "note": "Training fee: ₱40", "badge": null}, {"n": "1 Trial", "p": 40, "f": "Buddha, Portal, or Lightning", "note": "Training fee: ₱10", "badge": null}, {"n": "2 Trials", "p": 80, "f": "Buddha, Portal, or Lightning", "note": "Training fee: ₱20", "badge": null}, {"n": "3 Trials", "p": 120, "f": "Any mythical fruit (except Mammoth, Shadow, Spirit)", "note": "Training fee: ₱30", "badge": null}]}, "races": {"t": "Race Services", "ic": "bi-speedometer2", "items": [{"n": "Cyborg Race", "p": 80, "f": null, "note": null, "badge": null}, {"n": "Ghoul Race", "p": 70, "f": null, "note": null, "badge": null}, {"n": "Draco Race", "p": 90, "f": null, "note": null, "badge": null}, {"n": "Race V2", "p": 30, "f": null, "note": null, "badge": null}, {"n": "Race V3", "p": 50, "f": null, "note": null, "badge": null}]}, "islands": {"t": "Island Services", "ic": "bi-geo-alt-fill", "items": [{"n": "Kitsune Island", "p": 60, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}, {"n": "Prehistoric Island", "p": 70, "f": "Buddha, Portal, or Lightning", "note": null, "badge": null}]}};
+    let DATA = {};
+    const CAT = { 'Raid Services': ['raids', 'bi-lightning-charge-fill'], 'Quest Services': ['quests', 'bi-map-fill'], 'Item Services': ['items', 'bi-box-seam-fill'], 'V4 Services': ['v4', 'bi-stars'], 'Race Services': ['races', 'bi-speedometer2'], 'Island Services': ['islands', 'bi-geo-alt-fill'] };
+    function group(rows) { // sheet rows -> same shape the page already used
+      const d = {};
+      rows.forEach(r => {
+        const [id, ic] = CAT[r.category] || [String(r.category).toLowerCase().replace(/\W+/g, '-'), 'bi-controller'];
+        (d[id] = d[id] || { t: r.category, ic, items: [] }).items.push({ n: r.service, p: r.price, f: r.fruits || null, note: r.note || null, badge: r.status && r.status !== 'Active' ? r.status : null });
+      });
+      return d;
+    }
 
     const grid = document.getElementById('catGrid'), list = document.getElementById('svcList'),
           panel = document.getElementById('payPanel'), title = document.getElementById('catTitle');
     let current = null;
 
-    grid.innerHTML = Object.entries(DATA).map(([id, c]) => `
+    function renderGrid() { grid.innerHTML = Object.entries(DATA).map(([id, c]) => `
       <div class="col-sm-6 col-lg-4">
         <button class="cat-card" data-cat="${id}">
           <i class="bi ${c.ic} cat-ic"></i>
@@ -52,7 +62,7 @@
           <span class="cat-count">${c.items.length} service${c.items.length > 1 ? 's' : ''}</span>
           <span class="cat-go">View services <i class="bi bi-arrow-right"></i></span>
         </button>
-      </div>`).join('');
+      </div>`).join(''); }
 
     function openCat(id) {
       const c = DATA[id]; if (!c) return;
@@ -81,8 +91,12 @@
     list.addEventListener('click', e => { const b = e.target.closest('.svc-pick'); if (b) showPay(+b.dataset.i); });
 
     // links like services.html#quests open that category directly
-    const h = location.hash.slice(1);
-    if (DATA[h]) openCat(h);
+    grid.innerHTML = '<p class="text-center" style="color:#9db9c2">Loading services…</p>';
+    SheetAPI.services().then(rows => {
+      if (!rows) { grid.innerHTML = '<p class="text-center" style="color:#ff9a9a">Services could not load. Please refresh or contact me on Discord.</p>'; return; }
+      DATA = group(rows); renderGrid();
+      const h = location.hash.slice(1); if (DATA[h]) openCat(h);
+    });
   </script>
 </body>
 </html>
