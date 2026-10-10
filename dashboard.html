@@ -55,7 +55,7 @@
         <input id="fCust" placeholder="Customer username">
         <select id="fSvc"></select>
         <select id="fPay" aria-label="Payment method"><option>Cash</option><option>Fruit</option></select>
-        <select id="fWho" hidden></select>
+        <details id="fPick" class="mp"><summary id="fHsum"></summary><div id="fHbox"></div></details>
         <button id="fAdd">Add order</button><span id="fMsg" class="mut"></span>
       </div></div>
 
@@ -64,7 +64,17 @@
         <select id="fStatus"><option value="">All statuses</option><option>Pending</option><option>Done</option><option>Cancelled</option></select>
         <input id="q" placeholder="Search customer, service, order id"></div></div>
 
+    <div class="card"><h2>To pay out (since last payout)</h2><div class="tbl"><table id="bal"></table></div></div>
+    <div class="card" id="pOut" hidden><h2>Pay out to <span id="pOutWho"></span></h2>
+      <div class="row"><input id="pAmt" readonly aria-label="Amount to pay"><input id="pNote" placeholder="Note (optional, e.g. GCash ref)">
+        <button id="pGo">Confirm payout</button><button id="pCancel" class="sm">Cancel</button><span id="pMsg" class="mut"></span></div></div>
+    <div class="card"><h2>Payout history</h2><div class="tbl"><table id="hist"></table></div></div>
+
     <div class="card"><h2>Payout by team member and service</h2><div class="tbl"><table id="pay"></table></div></div>
+    <div class="card" id="hEdit" hidden><h2>Change handlers: <span id="hEditId"></span></h2>
+      <div id="hEditBox" class="mp-box"></div>
+      <div class="row" style="margin-top:10px"><button id="hSave">Save handlers</button><button id="hCancel" class="sm">Cancel</button><span id="hMsg" class="mut"></span></div></div>
+
     <div class="card"><h2>Orders</h2><div class="tbl"><table id="ord"></table></div></div>
   </div>
 </div>

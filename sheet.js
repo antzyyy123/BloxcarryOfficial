@@ -1,5 +1,5 @@
 // sheet.js: shared loader. Paste your Apps Script Web app URL below (see SETUP.md).
-const API_URL = 'https://script.google.com/macros/s/AKfycbwALaNClYDvO5Se1zJNWKI7-i1VTHWGGg0xei1mcr9sb-xUKAgXAqaCsBcw53LqE7ozog/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwU1_-cmSTZtEMVl74P1RQvOdn--FSzFtstC_MgMz0hw1A3YoW8S32fsX7ZKpPUXfSntA/exec';
 const SheetAPI = (() => {
   const cget = () => { try { return JSON.parse(localStorage.getItem('bc_public')); } catch (e) { return null; } };
   async function pub() {
