@@ -1,11 +1,13 @@
 // ===== EDIT YOUR LINKS HERE (used everywhere on the site) =====
 document.head.insertAdjacentHTML('beforeend', '<link rel="icon" type="image/svg+xml" href="favicon.svg">');
 const LINKS = {
-  discord:   'https://discord.com/users/818726423141023776',
+  discord:   'https://discord.gg/fRS6gA2VE3',
   messenger: 'https://www.messenger.com/t/Anthony.02.2005',
   facebook:  'https://www.facebook.com/profile.php?id=61595183523070',
   tiktok:    'https://www.tiktok.com/@anthonyojera',
-  email:     'mailto:anthonyojera47@gmail.com'
+  email:     'mailto:anthonyojera47@gmail.com',
+  Order_Service: 'https://forms.gle/C7AxfarJeNfDxYTPA',
+  BloxCarry_Admin_Registration: 'https://forms.gle/mBUpM8GKCWxYf4jQ9'
 };
 const BRAND = 'BloxCarry';
 const PAGES = [['index.html','Home'],['services.html','Services'],['about.html','About'],['faq.html','FAQ']];
@@ -53,9 +55,10 @@ const PAGES = [['index.html','Home'],['services.html','Services'],['about.html',
     <div class="modal-header"><h5 class="modal-title"><i class="bi bi-question-circle"></i> How It Works</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
     <div class="modal-body">
       <div class="how-step"><span class="step-num">1</span><div><h3>Choose a service</h3><p>Pick what you need on the Services page.</p></div></div>
-      <div class="how-step"><span class="step-num">2</span><div><h3>Message me</h3><p>Contact me on Discord or Messenger and tell me what you want.</p></div></div>
-      <div class="how-step"><span class="step-num">3</span><div><h3>Agree and pay</h3><p>We confirm the details. Pay in peso or fruits or gamepasses.</p></div></div>
-      <div class="how-step"><span class="step-num">4</span><div><h3>Get carried</h3><p>Join the session in-game and enjoy the run.</p></div></div>
+      <div class="how-step"><span class="step-num">2</span><div><h3>Fill out the order form</h3><p>Complete the <a href="${LINKS.Order_Service}" target="_blank" rel="noopener noreferrer" style="color:#48e5ff">Bloxcarry Service Order</a> Google Form.</p></div></div>
+      <div class="how-step"><span class="step-num">3</span><div><h3>Wait for the owner's message</h3><p>The owner will contact you through private message and assign an admin to carry you.</p></div></div>
+      <div class="how-step"><span class="step-num">4</span><div><h3>Agree and pay</h3><p>Confirm the details, then pay in peso or fruits or gamepasses.</p></div></div>
+      <div class="how-step"><span class="step-num">5</span><div><h3>Get carried</h3><p>Join the session in-game and enjoy the run.</p></div></div>
       <p style="color:#ffc107;font-size:.85rem;margin:6px 0 0"><i class="bi bi-exclamation-triangle"></i> Never share your Roblox password. I will never ask for it.</p>
     </div>
   </div></div></div>

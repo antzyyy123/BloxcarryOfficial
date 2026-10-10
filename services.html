@@ -82,7 +82,7 @@
         ${s.f ? `<div class="svc-or">or pay with: <span>${s.f}</span></div>` : '<div class="svc-or"></div>'}
         ${s.note ? `<div class="svc-fee"><i class="bi bi-info-circle"></i> ${s.note}</div>` : ''}
         ${s.badge ? `<div class="svc-fee"><i class="bi bi-hourglass-split"></i> ${s.badge}</div>` : ''}
-        <a href="contact.html" class="btn-custom"><i class="bi bi-chat-dots-fill"></i> Contact to Order</a>`;
+        <a href="${LINKS.Order_Service}" target="_blank" rel="noopener noreferrer" class="btn-custom"><i class="bi bi-cart-check-fill"></i> Order Service</a>`;
       panel.hidden = false;
       panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
