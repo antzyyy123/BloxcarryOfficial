@@ -2,8 +2,8 @@
 document.head.insertAdjacentHTML('beforeend', '<link rel="icon" type="image/svg+xml" href="favicon.svg">');
 const LINKS = {
   discord:   'https://discord.com/users/818726423141023776',
-  messenger: 'https://www.messenger.com/t/vampthony.02',
-  facebook:  'https://www.facebook.com/vampthony.02/',
+  messenger: 'https://www.messenger.com/t/Anthony.02.2005',
+  facebook:  'https://www.facebook.com/profile.php?id=61595183523070',
   tiktok:    'https://www.tiktok.com/@anthonyojera',
   email:     'mailto:anthonyojera47@gmail.com'
 };

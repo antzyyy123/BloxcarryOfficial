@@ -16,11 +16,21 @@ async function load() {
   DB = r; $('who').textContent = `${r.me.username} (${r.me.role})`;
   $('upd').textContent = 'Updated ' + new Date().toLocaleTimeString('en-PH', { timeZone: 'Asia/Manila' }) + ' PHT';
   const own = r.me.role === 'Owner';
-  $('fSvc').innerHTML = r.services.map(s => `<option value="${esc(s.service)}">${esc(s.service)} (₱${s.price})</option>`).join('');
+  fillSvc();
   const prev = $('fWho').value;
   $('fWho').innerHTML = r.team.map(u => `<option ${u === (prev || r.me.username) ? 'selected' : ''}>${esc(u)}</option>`).join('');
   $('fWho').hidden = !own;
   render();
+}
+
+// service list shows the peso price for Cash, or the accepted fruits for Fruit
+function fillSvc() {
+  // old backend versions don't send the fruits field: fall back to prices instead of disabling everything
+  const fruit = $('fPay').value === 'Fruit' && DB.services.some(s => 'fruits' in s), cur = $('fSvc').value;
+  $('fSvc').innerHTML = DB.services.map(s => `<option value="${esc(s.service)}" ${fruit && !s.fruits ? 'disabled' : ''}>${esc(s.service)} ${
+    fruit ? (s.fruits ? '— ' + esc(s.fruits) : '(no fruit option)') : '(₱' + s.price + ')'}</option>`).join('');
+  if (cur) $('fSvc').value = cur;
+  if ($('fSvc').selectedOptions[0]?.disabled) $('fSvc').selectedIndex = [...$('fSvc').options].findIndex(o => !o.disabled);
 }
 
 function filtered() {
@@ -49,11 +59,11 @@ function render() {
   $('pay').innerHTML = '<tr><th>username</th><th>service completed</th><th>services done</th><th>payout</th></tr>' +
     (pr.map(x => `<tr><td>${esc(x.u)}</td><td>${esc(x.s)}</td><td>${x.n}</td><td>${peso(x.p)}</td></tr>`).join('') || '<tr><td colspan="4" class="mut">No completed orders in this range.</td></tr>') +
     (pr.length ? `<tr><th colspan="2">Total</th><th>${sum(pr, 'n')}</th><th>${peso(sum(pr, 'p'))}</th></tr>` : '');
-  $('ord').innerHTML = '<tr><th>order</th><th>date</th><th>customer</th><th>handled by</th><th>service</th><th>price</th><th>payout</th><th>status</th><th></th></tr>' +
-    (rows.map(o => `<tr><td>${esc(o.id)}</td><td>${esc(o.date.replace('T', ' ').slice(0, 16))}</td><td>${esc(o.customer)}</td><td>${esc(o.username)}</td><td>${esc(o.service)}</td>
+  $('ord').innerHTML = '<tr><th>order</th><th>date</th><th>customer</th><th>handled by</th><th>service</th><th>method</th><th>price</th><th>payout</th><th>status</th><th></th></tr>' +
+    (rows.map(o => `<tr><td>${esc(o.id)}</td><td>${esc(o.date.replace('T', ' ').slice(0, 16))}</td><td>${esc(o.customer)}</td><td>${esc(o.username)}</td><td>${esc(o.service)}</td><td>${esc(o.method)}</td>
       <td>${peso(o.payment)}</td><td>${peso(o.payout)}</td><td><span class="st ${o.status}">${o.status}</span></td>
       <td>${o.status === 'Pending' ? `<button class="sm ok" data-id="${esc(o.id)}" data-st="Done">Mark done</button> <button class="sm no" data-id="${esc(o.id)}" data-st="Cancelled">Cancel</button>` : ''}</td></tr>`).join('') ||
-      '<tr><td colspan="9" class="mut">No orders yet. Log one above.</td></tr>');
+      '<tr><td colspan="10" class="mut">No orders yet. Log one above.</td></tr>');
 }
 
 function chart(id, type, labels, data, label) {
@@ -72,13 +82,14 @@ $('login').addEventListener('submit', async e => {
   try { await load(); if (S) { $('login').hidden = true; $('app').hidden = false; $('msg').textContent = ''; render(); } }
   catch (err) { $('msg').textContent = 'Could not reach the server. Check API_URL in sheet.js.'; }
 });
+$('fPay').addEventListener('change', () => DB && fillSvc());
 $('logout').onclick = logout;
 $('refresh').onclick = () => load();
 ['from', 'to', 'fStatus', 'q'].forEach(id => $(id).addEventListener('input', () => DB && render()));
 $('fAdd').onclick = async () => {
   const customer = $('fCust').value.trim(); if (!customer) { $('fMsg').textContent = 'Enter the customer username.'; return; }
   $('fAdd').disabled = true; $('fMsg').textContent = 'Saving…';
-  const r = await SheetAPI.post({ action: 'log', ...S, customer, service: $('fSvc').value, handler: $('fWho').hidden ? '' : $('fWho').value });
+  const r = await SheetAPI.post({ action: 'log', ...S, customer, service: $('fSvc').value, method: $('fPay').value, handler: $('fWho').hidden ? '' : $('fWho').value });
   $('fAdd').disabled = false; $('fMsg').textContent = r.error || `Added ${r.id}`;
   if (r.ok) { $('fCust').value = ''; load(); }
 };
